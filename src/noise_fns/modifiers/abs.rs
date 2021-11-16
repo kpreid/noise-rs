@@ -1,5 +1,6 @@
 use crate::noise_fns::NoiseFn;
 use core::marker::PhantomData;
+use num_traits::float::FloatCore;
 
 /// Noise function that outputs the absolute value of the output value from the
 /// source function.

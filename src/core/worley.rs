@@ -3,6 +3,7 @@ use crate::{
     permutationtable::NoiseHasher,
 };
 use core::f64;
+use num_traits::float::FloatCore;
 
 #[derive(Clone, Copy, Debug)]
 pub enum ReturnType {
@@ -11,6 +12,9 @@ pub enum ReturnType {
 }
 
 pub mod distance_functions {
+    use num_traits::float::FloatCore;
+
+    #[cfg(feature = "std")]
     pub fn euclidean(p1: &[f64], p2: &[f64]) -> f64 {
         p1.iter()
             .zip(p2)
@@ -92,7 +96,7 @@ where
     let seed_point = get_point(seed_index, near);
     let mut distance = distance_function(&point.into_array(), &seed_point.into_array());
 
-    let range = frac.map(|x| (0.5 - x).powf(2.0));
+    let range = frac.map(|x| (0.5 - x).powi(2));
 
     macro_rules! test_point(
         [$x:expr, $y:expr] => {

@@ -1,5 +1,5 @@
 use crate::math::vectors::*;
-use num_traits::Float;
+use num_traits::float::FloatCore;
 
 /// Quintic Interpolation Trait
 ///
@@ -36,7 +36,7 @@ impl Quintic for f64 {
 
 impl<T> Quintic for [T; 2]
 where
-    T: Float + Quintic,
+    T: FloatCore + Quintic,
 {
     fn map_quintic(&self) -> Self {
         [self[0].map_quintic(), self[1].map_quintic()]
@@ -45,7 +45,7 @@ where
 
 impl<T> Quintic for [T; 3]
 where
-    T: Float + Quintic,
+    T: FloatCore + Quintic,
 {
     fn map_quintic(&self) -> Self {
         [
@@ -58,7 +58,7 @@ where
 
 impl<T> Quintic for [T; 4]
 where
-    T: Float + Quintic,
+    T: FloatCore + Quintic,
 {
     fn map_quintic(&self) -> Self {
         [
@@ -72,7 +72,7 @@ where
 
 impl<T> Quintic for Vector2<T>
 where
-    T: Float + Quintic,
+    T: FloatCore + Quintic,
 {
     fn map_quintic(&self) -> Self {
         self.map(|x| x.map_quintic())
@@ -81,7 +81,7 @@ where
 
 impl<T> Quintic for Vector3<T>
 where
-    T: Float + Quintic,
+    T: FloatCore + Quintic,
 {
     fn map_quintic(&self) -> Self {
         self.map(|x| x.map_quintic())
@@ -90,7 +90,7 @@ where
 
 impl<T> Quintic for Vector4<T>
 where
-    T: Float + Quintic,
+    T: FloatCore + Quintic,
 {
     fn map_quintic(&self) -> Self {
         self.map(|x| x.map_quintic())
@@ -99,7 +99,7 @@ where
 
 // impl<T, V, const DIM: usize> Quintic for V
 // where
-//     T: Float + Quintic,
+//     T: FloatCore + Quintic,
 //     V: Vector<T, DIM>,
 // {
 //     fn map_quintic(&self) -> Self {
@@ -110,7 +110,7 @@ where
 // #[inline(always)]
 // pub fn quintic<F>(x: F) -> F
 //     where
-//         F: Float,
+//         F: FloatCore,
 // {
 //     x * x * x * (x * (x * F::from(6.0).unwrap() - F::from(15.0).unwrap()) + F::from(10.0).unwrap())
 // }

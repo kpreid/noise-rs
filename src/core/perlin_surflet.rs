@@ -1,3 +1,5 @@
+use num_traits::float::FloatCore;
+
 use crate::{
     gradient,
     math::vectors::{Vector, Vector2, Vector3, Vector4},

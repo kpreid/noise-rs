@@ -1,6 +1,8 @@
 use super::{Vector, VectorMap};
 use core::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign};
-use num_traits::{real::Real, Num, NumCast, One, Zero};
+#[cfg(feature = "std")]
+use num_traits::Float;
+use num_traits::{float::FloatCore, Num, NumCast, One, Zero};
 
 #[derive(Copy, Clone, Debug, Default, Eq)]
 pub struct Vector3<T> {
@@ -116,9 +118,10 @@ where
         self.dot(self)
     }
 
+    #[cfg(feature = "std")]
     fn magnitude(self) -> T
     where
-        T: Add<Output = T> + Real,
+        T: Add<Output = T> + num_traits::Float,
     {
         self.magnitude_squared().sqrt()
     }
@@ -156,7 +159,7 @@ where
 
     fn ceil(&self) -> Self
     where
-        T: Real,
+        T: FloatCore,
     {
         Self {
             x: self.x.ceil(),
@@ -167,7 +170,7 @@ where
 
     fn floor(&self) -> Self
     where
-        T: Real,
+        T: FloatCore,
     {
         Self {
             x: self.x.floor(),
@@ -180,6 +183,7 @@ where
         self.x + self.y + self.z
     }
 
+    #[cfg(feature = "std")]
     fn sqrt(self) -> Self
     where
         T: Real,

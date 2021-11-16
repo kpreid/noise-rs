@@ -1,4 +1,4 @@
-use num_traits::Float;
+use num_traits::float::FloatCore;
 
 /// Cubic S-Curve
 ///
@@ -34,7 +34,7 @@ impl Cubic for f64 {
 
 impl<T> Cubic for [T; 2]
 where
-    T: Float + Cubic,
+    T: FloatCore + Cubic,
 {
     fn map_cubic(&self) -> Self {
         [self[0].map_cubic(), self[1].map_cubic()]
@@ -43,7 +43,7 @@ where
 
 impl<T> Cubic for [T; 3]
 where
-    T: Float + Cubic,
+    T: FloatCore + Cubic,
 {
     fn map_cubic(&self) -> Self {
         [
@@ -56,7 +56,7 @@ where
 
 impl<T> Cubic for [T; 4]
 where
-    T: Float + Cubic,
+    T: FloatCore + Cubic,
 {
     fn map_cubic(&self) -> Self {
         [

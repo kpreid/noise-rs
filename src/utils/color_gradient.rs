@@ -1,4 +1,5 @@
 use alloc::vec::Vec;
+use num_traits::float::FloatCore;
 
 pub type Color = [u8; 4];
 

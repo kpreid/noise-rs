@@ -1,5 +1,7 @@
 use core::ops::{Add, Mul};
-use num_traits::real::Real;
+use num_traits::float::FloatCore;
+#[cfg(feature = "std")]
+use num_traits::Float;
 use num_traits::{One, Zero};
 
 pub use self::{vector2::*, vector3::*, vector4::*};
@@ -36,9 +38,10 @@ pub trait Vector<T, const DIM: usize> {
     fn magnitude_squared(self) -> T
     where
         T: Copy + Add<Output = T> + Mul<Output = T>;
+    #[cfg(feature = "std")]
     fn magnitude(self) -> T
     where
-        T: Add<Output = T> + Real;
+        T: Add<Output = T> + Float;
 
     /// Applies the function f to each element of this vector, in-place.
     fn apply<F>(&mut self, f: F)
@@ -55,10 +58,10 @@ pub trait Vector<T, const DIM: usize> {
 
     fn ceil(&self) -> Self
     where
-        T: Real;
+        T: FloatCore;
     fn floor(&self) -> Self
     where
-        T: Real;
+        T: FloatCore;
 
     /// Returns the sum of each of this vectors elements
     fn sum(self) -> T
@@ -67,9 +70,10 @@ pub trait Vector<T, const DIM: usize> {
 
     /// Returns a new vector which elements are the respective square roots of this
     /// vector's elements.
+    #[cfg(feature = "std")]
     fn sqrt(self) -> Self
     where
-        T: Real;
+        T: FloatCore;
 }
 
 pub trait VectorMap<T, U> {

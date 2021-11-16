@@ -1,3 +1,5 @@
+use num_traits::float::FloatCore;
+
 use crate::noise_fns::NoiseFn;
 
 /// Noise function that outputs concentric cylinders.

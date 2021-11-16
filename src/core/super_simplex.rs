@@ -1,3 +1,5 @@
+use num_traits::float::FloatCore;
+
 use crate::{gradient, math::vectors::*, permutationtable::NoiseHasher};
 
 const TO_REAL_CONSTANT_2D: f64 = -0.211_324_865_405_187; // (1 / sqrt(2 + 1) - 1) / 2
